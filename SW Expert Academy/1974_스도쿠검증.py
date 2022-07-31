@@ -30,11 +30,11 @@ for i in range(t):                      # t 개수 만큼 반복
             squ += list_n[2 + row3][co11 : co11 + 3]
 
             if sorted(squ) == list(range(1,10)):
-                a += 0                 # 모두 통과면 0을 더한다.
+                a += 0                  # 모두 통과면 0을 더한다.
             else:
                 a += 1
 
     if a == 0:
-        print(f'#{i + 1} 1')           # 모두 통과면 0이 나와서 1을 출력
+        print(f'#{i + 1} 1')            # 모두 통과면 0이 나와서 1을 출력
     else:
         print(f'#{i + 1} 0')

@@ -1,4 +1,5 @@
 # 1961_숫자배열회전
+
 t=int(input())
 for i in range(t):          # t 개수 만큼 반복
     n = int(input())        # 행렬 모양 받기
@@ -26,5 +27,5 @@ for i in range(t):          # t 개수 만큼 반복
         list_270.append(w) 
     
     print(f'#{i+1}')
-    for change in range(n):             # 행렬 위치 바꾸기
+    for change in range(n):              # 행렬 위치 바꾸기
         print(f'{list_90[change]} {list_180[change]} {list_270[change]}')
