@@ -1,3 +1,4 @@
+# 1945.간단한 소인수분해
 t = int(input())
 for tc in range(t):
     num = int(input())
