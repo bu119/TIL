@@ -25,4 +25,3 @@ for i in range(t):
     print(f'#{i+1}')
     for j in range(1, num+1):        # 파스칼 삼각형의 1번 줄부터 num줄 까지 출력
         print(pascal(j))
-
