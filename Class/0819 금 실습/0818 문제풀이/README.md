@@ -18,9 +18,7 @@
 
 ### 설계
 
-![종이붙이기_dp](0818 문제풀이.assets/종이붙이기_dp.png)
-
-
+![](C:\Users\LG\Desktop\PUSH\TIL\Class\0819 금 실습\0818 문제풀이\종이붙이기_dp.png)
 
 ### Code (귀납법, 재귀)
 
@@ -189,7 +187,7 @@ for tc in range(1, T+1):
 
 ### 설계
 
-![그래프 경로](0818 문제풀이.assets/그래프 경로.png)
+![](C:\Users\LG\Desktop\PUSH\TIL\Class\0819 금 실습\0818 문제풀이\그래프 경로.png)
 
 ### Code
 
