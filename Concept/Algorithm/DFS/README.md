@@ -56,18 +56,18 @@
 3. 정점 A에 방문하지 않은 인접 정점이 있으면 A를 스택에 push하고, 인접 정점을 오름차순에 따라 선택하여 계속 탐색한다.
    - A - B - D - F - E - C
 
-![DFS(1)](C:\Users\LG\Desktop\PUSH\TIL\Concept\Algorithm\IMG\DFS(1).png)
+<img width="1153" alt="DFS(1)" src="https://user-images.githubusercontent.com/109335452/188300736-a4a18254-eca5-40e8-a943-50a8da100826.png">
 
 4. 정점 C에서 방문하지 않은 인접 정점이 없으므로, 
 
    마지막 정점으로 돌아가기위해 스택을 pop하여 받은 정점 E에 방문하지 않은 인접 정접이 있는지 확인한다.
 
-![DFS(2)](C:\Users\LG\Desktop\PUSH\TIL\Concept\Algorithm\IMG\DFS(2).png)
+<img width="1176" alt="DFS(2)" src="https://user-images.githubusercontent.com/109335452/188300738-f0aebe32-f9de-4736-8a70-68b11c5043ba.png">
 
 5. pop한 정점에 방문하지 않은 인접 정점이 나올때까지 pop을 반복한다.
 6. 정점 F에 방문하지 않은 정점 G가 있으므로 F를 스택에 push 하고, 인접 정점 G를 선택하여 탐색을 계속한다.
 
-![DFS(3)](C:\Users\LG\Desktop\PUSH\TIL\Concept\Algorithm\IMG\DFS(3).png)
+<img width="1202" alt="DFS(3)" src="https://user-images.githubusercontent.com/109335452/188300739-d1b832e9-1fc6-461e-9340-17c59185c59e.png">
 
 7. 정점 G에서 방문하지 않은 인접 정점이 없으므로, 
 
@@ -77,7 +77,7 @@
 
    - G - F - D - B - A
 
-   ![DFS(4)](C:\Users\LG\Desktop\PUSH\TIL\Concept\Algorithm\IMG\DFS(4).png)
+<img width="919" alt="DFS(4)" src="https://user-images.githubusercontent.com/109335452/188300740-b0b9bdde-c51d-4ff6-a27c-8337bd187977.png">
 
 ```python
 '''
