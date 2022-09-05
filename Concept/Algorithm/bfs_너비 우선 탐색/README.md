@@ -37,7 +37,7 @@
 
 ### 3. 탐색 순서
 
-![BFS 탐색순서](C:\Users\LG\Desktop\PUSH\TIL\Concept\Algorithm\bfs_너비 우선 탐색\IMG\BFS 탐색순서.png)
+<img width="888" alt="BFS 탐색순서" src="https://user-images.githubusercontent.com/109335452/188479419-6343af13-1b53-4ab7-ad2f-34789696c2f4.png">
 
 
 
@@ -45,13 +45,17 @@
 
 #### 1. 큐
 
-- Q 가 비면 탐색 종료
+- `Q`가 비면 탐색 종료
 
+<img width="1091" alt="BFS(1)" src="https://user-images.githubusercontent.com/109335452/188479434-3e99ec66-1763-4a76-89a8-5111d035f9e8.png">
 
+<img width="1097" alt="BFS(2)" src="https://user-images.githubusercontent.com/109335452/188479529-913550ff-996c-48b4-8496-87c636f4c562.png">
 
+<img width="1101" alt="BFS(3)" src="https://user-images.githubusercontent.com/109335452/188479699-875c2d93-6741-4626-81ea-7d24729e22dc.png">
+<img width="1121" alt="BFS(4)" src="https://user-images.githubusercontent.com/109335452/188479709-b4a1b2f5-81aa-49f1-a6c7-a0404ba9ccbc.png">
 
-
-
+<img width="1104" alt="BFS(5)" src="https://user-images.githubusercontent.com/109335452/188479554-430da3d6-9491-4740-85f5-fa2493700997.png">
+<img width="1082" alt="BFS(6)" src="https://user-images.githubusercontent.com/109335452/188479562-56e6013b-22c1-4819-8c92-c4c840d14b35.png">
 
 
 
