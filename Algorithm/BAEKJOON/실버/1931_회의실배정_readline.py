@@ -1,7 +1,8 @@
-# 4224ms
+# 340ms
 
-n = int(input())
-time = [list(map(int, input().split())) for _ in range(n)]
+import sys
+n = int(sys.stdin.readline())
+time = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 
 time.sort(key=lambda x: (x[1], x[0]))   # 끝나는 시간으로 정렬, 같으면 시작 시간으로 정렬
 end = time[0][1]                        # 첫 번째 인덱스의 끝나는 시간
