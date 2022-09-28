@@ -2,7 +2,7 @@
 
 ## USADO가 K 이상인 동영상의 추천 개수 구하기
 
-#### [15591. MooTube (Silver)][https://www.acmicpc.net/problem/15591]
+#### [15591. MooTube (Silver)](https://www.acmicpc.net/problem/15591)
 
 - 두 동영상이 얼마나 가까운 지를 측정하는 단위 “USADO” 
 - 다른 동영상으로 가는 경로가 반드시 하나 존재

@@ -2,7 +2,7 @@
 
 ##  아래의 규칙을 만족하면서 모든 집을 칠하는 비용의 최솟값 구하기
 
-#### [1149. RGB거리][https://www.acmicpc.net/problem/1149]
+#### [1149. RGB거리](https://www.acmicpc.net/problem/1149)
 
 - RGB거리에는 집이 N개 있다. 
 - 집은 빨강, 초록, 파랑 중 하나의 색으로 칠해야 한다.

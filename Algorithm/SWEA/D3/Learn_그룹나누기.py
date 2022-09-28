@@ -30,5 +30,3 @@ for tc in range(t):
             bfs(i)
             cnt += 1
     print(f'#{tc+1} {cnt}')
-
-

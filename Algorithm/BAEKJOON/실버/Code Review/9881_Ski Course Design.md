@@ -2,7 +2,7 @@
 
 ## 언덕의 높이를 x 단위로 변경하는 데 지불해야 하는 최소 금액 구하기
 
-#### [9881. Ski Course Design][https://www.acmicpc.net/problem/9881]
+#### [9881. Ski Course Design](https://www.acmicpc.net/problem/9881)
 
 - 가장 높은 언덕과 가장 낮은 언덕 사이의 차이가 엄격하게 17보다 크면 세금 부과
 - 가장 높은 언덕을 줄이고 짧은 언덕의 높이를 높이면 가장 높은 언덕과 가장 낮은 언덕 사이의 새 차이가 최대 17인 한 세금을 내지 않을 수 있다.
