@@ -11,7 +11,7 @@ def bfs(v):
     while q:                                 # Q 가 비어있지 않으면
         v = q.pop(0)                         # Q의 첫 번째 원소 반환
         print(v, end=' ')                    # -> 하고픈 일 하기
-    for w in adj_list[v]:                    # 인접
+        for w in adj_list[v]:                    # 인접
             if not visited[w]:               # 방문을 안 했으면
                 q.append(w)                  # Q에 넣기
                 visited[w] = visited[v] + 1  # 방문체크
