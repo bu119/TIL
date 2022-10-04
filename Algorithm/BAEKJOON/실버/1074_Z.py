@@ -28,9 +28,3 @@ while n > 0:
     # print(n, r, c, ans)
 
 print(ans)
-
-
-
-
-
-
