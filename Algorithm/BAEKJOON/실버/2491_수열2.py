@@ -8,14 +8,12 @@ for i in range(1, n):
         small += 1
     elif arr[i-1] < arr[i]:
         big += 1
+        ans = max(ans, small)
         small = 1
     else:
         small += 1
+        ans = max(ans, big)
         big = 1
-
-    if ans < small:
-        ans = small
-    if ans < big:
-        ans = big
+ans = max(ans, big, small)
 
 print(ans)
