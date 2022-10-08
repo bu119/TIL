@@ -7,5 +7,5 @@ for i in range(4):
         print('c')
     elif p1 == x2 or x1 == p2 or q1 == y2 or q2 == y1:          # 선
         print('b')
-    else:                                                       # 사각형
+    else:                                                       # 면
         print('a')

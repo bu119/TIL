@@ -12,5 +12,5 @@ for i in range(4):
         print('c')
     elif x == p or y == q:      # 선
         print('b')
-    else:                       # 사각형
+    else:                       # 면
         print('a')
