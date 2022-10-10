@@ -1,60 +1,21 @@
-def close_num(num):             # 가까운 숫자 찾기
-    if o_x == 1:
-        return o_num[0]
-
-    if num < o_num[0]:
-        return o_num[0]
-
-    if o_num[-1] < num:
-        return o_num[-1]
-
-    for x in range(1, o_x):
-        if o_num[x-1] < num < o_num[x]:
-            if num - o_num[x-1] < num - o_num[x]:
-                return o_num[x-1]
-            elif num - o_num[x-1] > num - o_num[x]:
-                return o_num[x]
-            else:
-                return o_num[x-1], o_num[x]
-
-def find_num(arr):              # 숫자 찾기
-    numb = 0
-    nn = len(arr)
-    for x in range(nn):
-        numb += arr[x] * (10**(nn-1-x))
-    return numb
-
-
-n = list(map(int, input()))
-m = int(input())
-if m:
-    x_num = list(map(int, input().split()))
-
-number = find_num(n)
-# print(number)
-
-o_num = list(range(10))
-o_x = 10-m
-cnt = len(n)
-num = []
-
-if cnt == 3 and n[0] == 1 and n[1] == 0:
-    print(n[2])
+channel = int(input())
+broken_n = int(input())
+if broken_n:
+    broken = input().split()
 else:
-    for i in range(m):
-        o_num.remove(x_num[i])
+    broken = []
 
-    if cnt == 1:
-        new = close_num(n[0])
-        print(abs(n[0] - new) + cnt)
+cnt = abs(channel - 100)                # up_down으로 채널 검색하는 수
 
-    else:
-        for j in range(len(n)):
-            if n[j] in o_num:
-                num.append(n[j])
-            else:
-                num.append(close_num(n[j]))
+for number in range(1000001):           # 완전탐색으로 버튼 눌러서 찾기
 
-        new = find_num(num)
+    num = str(number)
+    n = len(num)
 
-        print(abs(number-new)+cnt)
+    for i in range(n):
+        if num[i] in broken:            # 버튼을 누를 수 없는 수가 나오면 다른 수 탐색
+            break
+        if i == n - 1:                  # 모든 수가 버튼을 누를 수 있으면
+            cnt = min(cnt, abs(number - channel) + n)   # 버튼 누른 수와 +-로 찾은 수 중 최소값 찾기
+
+print(cnt)
