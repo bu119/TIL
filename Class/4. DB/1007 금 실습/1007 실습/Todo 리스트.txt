@@ -1,8 +1,8 @@
-day13
+day14
 │
-└── day13_exercise1
+└── day14_exercise1
     │
-    ├── project1
+    ├── practice1
     │   │   
     │   ├── __init__.py
     │   ├── asgi.py
@@ -26,28 +26,8 @@ day13
     │       └── accounts
     │           │   
     │           ├── login.html
-    │	  └── signup.html
+    │	    └── signup.html
     │ 
-    ├── articles/
-    │   │   
-    │   ├── migrations/
-    │   ├── __init__.py
-    │   ├── admin.py
-    │   ├── apps.py
-    │   ├── forms.py
-    │   ├── models.py
-    │   ├── tests.py
-    │   ├── urls.py
-    │   ├── views.py
-    │   └── templates
-    │       │         
-    │       └── articles
-    │           │   
-    │           ├── create.html
-    │           ├── detail.html
-    │	  ├── index.html
-    │	  └── update.html
-    │       
     ├── templates
     │       │         
     │       └── base.html
@@ -56,6 +36,6 @@ day13
     │       
     ├── db.sqlite3
     │  
-    └── manage.py
+    ├── manage.py
     │  
     └── requirements.txt
