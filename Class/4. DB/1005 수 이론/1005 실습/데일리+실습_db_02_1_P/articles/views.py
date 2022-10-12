@@ -24,7 +24,7 @@ def create(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             article = form.save(commit=False)
-            article.author = request.user
+            article.user = request.user
             article.save()
             return redirect('articles:detail', article.pk)
     else:
@@ -46,23 +46,31 @@ def detail(request, pk):
 
 @require_POST
 def delete(request, pk):
-    article = get_object_or_404(Article, pk=pk)
-    article.delete()
-    return redirect('articles:index')
+    article = Article.objects.get(pk=pk)
+
+    if request.user.is_authenticated:
+        if request.user == article.user:
+            article.delete()
+            return redirect('articles:index')
+    return redirect('articles:detail', article.pk)
 
 
 @require_http_methods(['GET', 'POST'])
 def update(request, pk):
-    article = get_object_or_404(Article, pk=pk)
-    if request.method == 'POST':
-        form = ArticleForm(request.POST, instance=article)
-        if form.is_valid():
-            form.save()
-            return redirect('articles:detail', article.pk)
+    article = Article.objects.get(pk=pk)
+    if request.user == article.user:
+        if request.method == 'POST':
+            form = ArticleForm(request.POST, instance=article)
+            if form.is_valid():
+                form.save()
+                return redirect('articles:detail', article.pk)
+        else:
+            form = ArticleForm(instance=article)
     else:
-        form = ArticleForm(instance=article)
+        return redirect('articles:index')
+    
     context = {
-        'article': article,
         'form': form,
+        'article': article,
     }
     return render(request, 'articles/update.html', context)
