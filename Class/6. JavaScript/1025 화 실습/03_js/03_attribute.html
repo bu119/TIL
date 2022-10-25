@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 선언된 순서 */
+    .red { 
+      color: red;
+    }
+    .blue {
+      color: blue;
+    }
+
+    .done {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <!-- 이 순서는 관계 없다. -->
+  <h1 class="blue red">안녕하세요</h1>
+  <div></div>
+
+  <script>
+    const aTag = document.createElement('a')
+    aTag.innerText = '구글'
+    
+    const divTag = document.querySelector('div')
+    divTag.appendChild(aTag)
+
+    aTag.setAttribute('href', 'https://google.com')
+    console.log(aTag.getAttribute('href'))
+    
+    const h1Tag = document.querySelector('h1')
+    console.log(h1Tag.classList)
+
+    // if(h1Tag.classList.contains == 'blue'){
+    //   h1Tag.classList.remove('blue')
+    //   console.log(h1Tag.classList)
+
+    // } 
+    // else{
+          // 추가
+    //   h1Tag.classList.add('blue')
+    //   console.log(h1Tag.classList)
+
+    // }
+    
+    // h1Tag.classList.toggle('blue')
+    h1Tag.classList.toggle('done')
+    console.log(h1Tag.classList)
+
+
+
+  </script>
+</body>
+</html>

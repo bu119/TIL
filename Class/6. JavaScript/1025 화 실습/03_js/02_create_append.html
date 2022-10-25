@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+  
+  <script>
+    // h1태그 만들기
+    const title = document.createElement('h1')
+    // 글자 넣기
+    title.innerText = 'DOM 조작'
+    // 하나라서 태그로 접근
+    const div = document.querySelector('div')
+    // div의 자식으로 들어감
+    div.appendChild(title)
+    // 제거
+    div.removeChild(title)
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="title">DOM 조작</h1>
+  <p class="text">querySelector</p>
+  <p class="text">querySelectorAll</p>
+  <ul>
+    <li>Javascript</li>
+    <li>Python</li>
+  </ul>
+  <p>
+
+  </p>
+  <a href=""></a>
+
+  <script>
+    // id
+    console.log(document.querySelector('#title'))
+    // class
+    console.log(document.querySelectorAll('.title'))
+    console.log(document.querySelector('.title'))
+    // 자식들
+    console.log(document.querySelectorAll('body > ul > li'))
+    
+    const texts = document.querySelectorAll('.text')
+    // 하나씩 출력
+    texts.forEach((element) => {
+      console.log(element)
+    })
+
+
+  </script>
+</body>
+</html>
