@@ -1,4 +1,4 @@
-def line(r, c, cnt):
+def dfs(r, c, cnt):
     global ans
     flag = 1
 
@@ -17,16 +17,16 @@ def line(r, c, cnt):
             if not visited[r][nc] and ladder[r][nc]:
                 visited[r][nc] = 1
                 flag = 0
-                line(r+1, nc, cnt)
+                dfs(r+1, nc, cnt)
             else:
                 tmp.append((r+1, nc))
 
     if flag:
         visited[r][c] = 1
-        line(r + 1, c + 1, cnt)
+        dfs(r + 1, c + 1, cnt)
         for row, col in tmp:
             visited[row][col] = 1
-            line(row, col, cnt+1)
+            dfs(row, col, cnt+1)
 
 
 
@@ -39,15 +39,34 @@ dc = [-1, 1, 1]
 
 ans = 0
 
-for i in range(m):
+for _ in range(m):
     a, b = map(int, input().split())
-
+    ans = 0
     ladder[a-1][b-1] = 1
-    ladder[a-1][b] = 1
-    for j in range(m):
+    flag = 1
+    for i in range(n):      # 세로 줄 선택
+        line = i
+        for j in range(h):  # 가로
+            if ladder[j][i]:
+                line += 1
+            if line > 0 and ladder[j][line-1]:
+                line -= 1
+        if line != i:
+            flag = 0
+            break
+
+    if flag:
+        print(ans)
+    else:
+
+
+
+
+
+
         visited = [[0] * n for _ in range(h)]
         visited[0][j] = 1
-        line(0, j, 0)
+        dfs(0, j, 0)
 
 if ans > 3:
     print(-1)
