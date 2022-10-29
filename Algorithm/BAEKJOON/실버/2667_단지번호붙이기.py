@@ -7,8 +7,6 @@ def dfs(i, j):
         ni = i + di[k]
         nj = j + dj[k]
         if 0 <= ni < n and 0 <= nj < n and arr[ni][nj] and visited[ni][nj] == 0:
-            # visited[ni][nj] = 1   # 방문 체크
-            # cnt_s += 1
             dfs(ni, nj)             # 다시 탐색
     return cnt_s
 
