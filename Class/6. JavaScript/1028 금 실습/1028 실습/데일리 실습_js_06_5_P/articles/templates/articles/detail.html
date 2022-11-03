@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>DETAIL</h2>
+  <h3>{{ article.pk }} 번째 글</h3>
+  <hr>
+  <p>제목 : {{ article.title }}</p>
+  <p>내용 : {{ article.content }}</p>
+  <p>작성시각 : {{ article.created_at }}</p>
+  <p>수정시각 : {{ article.updated_at }}</p>
+  <hr>
+  {% if user == article.user %}
+    <a href="{% url 'articles:update' article.pk %}">[UPDATE]</a>
+    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="DELETE">
+    </form>
+  {% endif %}
+  <a href="{% url 'articles:index' %}">[back]</a>
+  <hr>
+  <h4>댓글 목록</h4>
+  {% if comments %}
+    <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
+  {% endif %}
+  <ul id="comment-list">
+    {% for comment in comments %}
+      <li id="comment-{{ comment.pk }}" data-comment-pk="{{ comment.pk }}">
+        {{ comment.user }} - <span> {{ comment.content }} </span>
+        {% if user == comment.user %}
+          <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            <input type="submit" value="DELETE">
+          </form>
+          <button id="comment-update">수정</button>
+        {% endif %}
+      </li> 
+    {% endfor %}
+  </ul>
+
+  <hr>
+  {% if request.user.is_authenticated %}
+    <form id="comment-form">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit">
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
+  {% endif %}
+{% endblock content %}
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const form = document.querySelector('#comment-form')
+    const input = document.querySelector('[name=content]')
+    const deleteBtns = document.querySelectorAll('#comment-delete')
+    const updateBtns = document.querySelectorAll('#comment-update')
+    const ul = document.querySelector('#comment-list')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    
+    const newDeleteBtn = document.createElement('button')
+    newDeleteBtn.innerText = 'DELETE'
+    newDeleteBtn.id = "comment-delete"
+    
+    const newUpdateBtn = document.createElement('button')
+    newUpdateBtn.innerText = '수정'
+    newUpdateBtn.id = 'comment-update'
+    
+    const createComment = function (event) {
+      event.preventDefault()
+      let data = new FormData()
+      //data.append('content', input.value)
+      const commentContent = _.escape(input.value);
+      data.append("content", commentContent);
+      
+      axios({
+        method: "POST",
+        url: "{% url 'articles:comments_create' article.pk  %}",
+        data,
+        headers: {'X-CSRFToken': csrftoken}
+      })
+      .then(res => {
+        const {commentPk, articlePk, commentCount} = res.data
+        createCommentElement(commentPk, commentCount)
+      })
+    }
+
+    const deleteComment = function (event) {
+      event.preventDefault()
+      const { commentPk } = event.target.parentNode.dataset
+      axios({
+        method: "POST",
+        url: `/articles/{{ article.pk }}/comments/${commentPk}/delete/`,
+        headers: {'X-CSRFToken': csrftoken}
+      })
+      .then(res => {
+        const {commentPk, articlePk, commentCount} = res.data
+        checkCommentCount(commentCount)
+        event.target.parentNode.remove()
+      })
+    }
+
+    const checkCommentCount = function (commentCount) {
+      const commentCountTag = document.querySelector('#comment-count')
+      if (commentCountTag != null) {
+        if (commentCount === 0) {
+          commentCountTag.parentNode.remove()
+        }
+        commentCountTag.innerText = `${commentCount}개의 댓글이 있습니다.`
+      } else {
+        const commentCountP = document.createElement('p')
+        const commentCountb = document.createElement('b')
+        const comments = document.querySelector('#comments')
+        commentCountb.innerText = `${commentCount}개의 댓글이 있습니다.`
+        commentCountb.id = "comment-count"
+        commentCountP.append(commentCountb)
+        comments.after(commentCountP)
+      }
+    }
+
+    const updateToggle = function (event) {
+      const targetComment = event.target.parentNode
+      const updateInput = document.createElement('input')
+      updateInput.value = targetComment.childNodes[1].innerText
+      updateInput.name = 'content'
+
+      const updateBtn = document.createElement('button')
+      updateBtn.innerText = 'update'
+
+      updateBtn.addEventListener('click', event => {
+        event.preventDefault()
+        const { commentPk } = event.target.parentNode.dataset
+        let data = new FormData()
+        data.append('content', updateInput.value)
+        
+        axios({
+          method: "POST",
+          url: `/articles/{{ article.pk }}/comments/${commentPk}/update/`,
+          data,
+          headers: {'X-CSRFToken': csrftoken}
+        })
+        .then(res => {
+          const {commentPk, articlePk, commentCount} = res.data
+          targetComment.innerText = '{{ request.user.username }} - '
+
+          const span = document.createElement('span')
+          span.innerText = `${updateInput.value} `
+
+          newDeleteBtn.setAttribute('data-comment-pk', `${commentPk}`)
+          newDeleteBtn.addEventListener('click', deleteComment)
+          newUpdateBtn.addEventListener('click', updateToggle)
+
+          targetComment.append(span, newDeleteBtn, newUpdateBtn)
+        })
+      })
+
+      targetComment.innerText = ''
+      targetComment.append(updateInput, updateBtn)
+    }
+
+
+    const createCommentElement = function (commentPk, commentCount) {
+      const li = document.createElement('li')
+      li.id = `comment-${commentPk}`
+      li.setAttribute('data-comment-pk', `${commentPk}`)
+      li.innerText = '{{ request.user.username }} - '
+
+      const span = document.createElement('span')
+      span.innerText = `${input.value} `
+
+      newDeleteBtn.setAttribute('data-comment-pk', `${commentPk}`)
+      newDeleteBtn.addEventListener('click', deleteComment)
+
+      newUpdateBtn.addEventListener('click', updateToggle)
+
+      li.append(span, newDeleteBtn, newUpdateBtn)
+      input.value = ''
+
+      ul.append(li)
+
+      checkCommentCount(commentCount)
+    }
+    
+    form.addEventListener('submit', createComment)
+    deleteBtns.forEach(btn => btn.addEventListener('click', deleteComment))
+    updateBtns.forEach(btn => btn.addEventListener('click', updateToggle))
+  </script>
+{% endblock script %}
+
