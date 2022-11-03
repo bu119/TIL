@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+    <p>메시지: {{ msg }}</p>
+    <p v-text ="msg"></p>
+
+    <p>HTML : {{ rawHTML }}</p>
+    <!-- v-html 공격 받을 수 있다. -->
+    <p>HTML : <span v-html = "rawHTML"></span></p>
+    <!-- 회문 비교 가능 -->
+    <p> {{ msg.split('') }}</p>
+    <p> {{ msg.split('').reverse() }}</p>
+    <p> {{ msg.split('').reverse().join('') }}</p>
+
+  </div>
+
+  <div id='app3'>
+    <p v-show="isActive">보이니? 안보이니?</p>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: 'Text interpolation',
+        rawHTML: '<span style="color:red"> 빨간 글씨 <span>'
+      }
+
+    })
+
+    const app3 = new Vue({
+      el: '#app3',
+      data: {
+        isActive: false,
+      }
+    })
+
+  </script>
+
+</body>
+</html>

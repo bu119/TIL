@@ -1,0 +1,51 @@
+<template>
+  <div>
+    <h1>AppParent</h1>
+    <input 
+      type="text"
+      v-model="parentInput"
+      @input="parentInputData"
+    >
+    <p>appData: {{ appInput }} </p>
+    <p>childData: {{ childInput }}</p>
+    <AppChild
+      :parentInput="parentInput"
+      :appInput="appInput"
+      @child-input-data="onChildInputData"
+    />
+  </div>
+</template>
+
+<script>
+import AppChild from '@/components/AppChild'
+
+export default {
+  name: 'AppParent',
+  props: {
+    appInput: String
+  },
+  components: {
+    AppChild,
+  },
+  data: function() {
+    return {
+      parentInput: null,
+      childInput: null,
+    }
+  },
+  methods: {
+    onChildInputData(childData) {
+      this.childInput = childData
+      this.$emit('child-input-data', this.childInput)
+    },
+    parentInputData() {
+      this.$emit('parent-input-data', this.parentInput)
+
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"> 
+        <h1>회문 검사기</h1>
+        <input v-model="word" type="text">
+        <button @click="check">확인하기</button>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                word:'',
+            },
+            methods: {
+                check(){
+                    if(this.word === ''){
+                        alert('입력값이 없습니다.')
+                        return
+                    }
+                    const reserved = this.word.split('').reverse().join('')
+                    if (this.word === reserved){
+                        alert('회문입니다.')
+                    }
+                    else{
+                        alert('회문이 아닙니다.')
+                    }
+                }   
+            }
+        })
+        
+        
+    </script>
+</body>
+</html>

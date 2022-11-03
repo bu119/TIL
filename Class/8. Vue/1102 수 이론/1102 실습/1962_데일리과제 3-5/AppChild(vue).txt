@@ -1,0 +1,40 @@
+<template>
+  <div>
+    <h1>AppChild</h1>
+    <input
+      type="text"
+      v-model="childInput"
+      @input="childInputData"
+    >
+    <p>appData: {{ appInput }}</p>
+    <p>parentData: {{parentInput}} </p>
+    <p>childData: {{childInput}}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'AppChild',
+  props: {
+    appInput: String,
+    parentInput: String,
+  },
+  data: function(){
+    return {
+      childInput: null,
+      appData: null,
+      parentData: null,    
+    }
+  },
+  methods: {
+    childInputData() {
+      this.$emit('child-input-data', this.childInput)
+    }
+  }
+}
+
+</script>
+
+<style>
+
+</style>

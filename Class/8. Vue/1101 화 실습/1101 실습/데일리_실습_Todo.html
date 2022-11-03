@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .done {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Todo List</h1>
+  
+  <div id="app">
+    <input v-model="content" type="text">
+    <button @click="createTodo">+</button>
+    <ul>
+      <li v-for="(element, idx) in todoList" :key="element.date">
+        <input type="checkbox"  @click="toggleComplete(idx)">
+        <span :class="{done: element.completed}">{{ element.content }}</span>
+      </li>
+    </ul>
+    <button @click="deleteTodo">완료 목록 삭제</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        content: '',
+        todoList:[],
+      },
+      methods: {
+        createTodo() {
+          if (!this.content.trim()){
+            alert('내용을 입력해 주세요!')
+            return
+          }
+          const todo = {
+            content: this.content,
+            completed: false,
+            date: new Date().getTime(),
+          }
+          this.todoList.push(todo)
+
+        },
+        toggleComplete(idx) {
+          const todo = this.todoList[idx]
+          todo.completed = !todo.completed
+        },
+        deleteTodo() {
+          this.todoList = this.todoList.filter((todo) => {
+            return !todo.completed
+          })
+        }
+      }
+      
+    })
+  </script>
+
+</body>
+</html>
