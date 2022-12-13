@@ -1,30 +1,30 @@
-import { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { DiaryDispatchContext } from "./App";
 
 const DiaryEditor = () => {
 
+  const { onCreate } = useContext(DiaryDispatchContext);
+
   const authorInput = useRef();
   const contentInput = useRef();
+  const passwordInput = useRef();
 
   // state에 author와 content의 state를 하나로 묶는다.
   const [state, setState] = useState({
     author: "",
     content: "",
     emotion: 1,
-
+    password:"",
+    
   });
-  // const [author, setAuthor] = useState("");
-  // const [content, setContent] = useState("");
 
   // author, content 이벤트핸들러 합치기
   const handleChangeState = (e) => {
     setState({
       // state의 객체가 길면 spread 연산자를 사용한다.
       // 변경하고자하는 값을 spread 연산자 밑에 쓴다.
-      // 반대로하면 원래 값이 새로운 값을 덮어쓰게 된다.
       ...state,
       [e.target.name]: e.target.value
-      // author : 바뀐값
-      // content : 바뀐값
     });
   };
 
@@ -43,8 +43,22 @@ const DiaryEditor = () => {
       return;
     }
 
+    if (state.password.length < 4) {
+      passwordInput.current.focus();
+      return;
+    }
+
+    // 3. 일기가 저장될 때 onCreate 함수를 호출하여 작성된 폼을 App 컴포넌트의 onCreate에 전달한다.
+    onCreate(state.author, state.content, state.emotion, state.password)
     // console.log(state);
     alert("저장 성공!");
+    // 일기가 작성되면 일기 작성 폼의 데이터를 초기화
+    setState({
+      author: "",
+      content: "",
+      emotion: 1,
+      password:'',
+    });
   };
 
 
@@ -57,19 +71,6 @@ const DiaryEditor = () => {
           name="author"
           value={state.author}
           onChange={handleChangeState}
-          // onChange={(e)=>{
-          //   // console.log(e.target.value)
-          //   // setAuthor(e.target.value)
-          //   // 객체를 바꾸려면 객체로 전달
-          //   setState({
-          //     // state의 객체가 길면 spread 연산자를 사용한다.
-          //     // 변경하고자하는 값을 spread 연산자 밑에 쓴다.
-          //     // 반대로하면 원래 값이 새로운 값을 덮어쓰게 된다.
-          //     ...state,
-          //     author: e.target.value,
-          //     // content: state.content,
-          //   })
-          // }}
         />
       </div>
       <div>
@@ -78,15 +79,6 @@ const DiaryEditor = () => {
           name="content"
           value={state.content}
           onChange={handleChangeState}
-          // onChange={(e)=>{
-          //   // console.log(e.target.value)
-          //   // setContent(e.target.value)
-          //   setState({
-          //     // author: state.author,
-          //     ...state,
-          //     content: e.target.value,
-          //   })
-          // }}
         />
       </div>
       <div>
@@ -104,9 +96,20 @@ const DiaryEditor = () => {
         </select>
       </div>
       <div>
-        <button button onClick={handleSubmit}>일기 저장하기</button>
+        <span>비밀번호 : </span>
+        <input
+          id='password'
+          ref={passwordInput}
+          type='password'
+          name="password"
+          value={state.password}
+          onChange={handleChangeState}
+        />
+      </div>
+      <div>
+        <button onClick={handleSubmit}>일기 저장하기</button>
       </div>
     </div>
   );
 };
-export default DiaryEditor;
+export default React.memo(DiaryEditor);
