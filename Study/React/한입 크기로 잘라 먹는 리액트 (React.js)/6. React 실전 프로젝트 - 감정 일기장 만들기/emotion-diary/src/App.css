@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+/* 폰트 불러오기 */
+/* 폰트 사용 - 폰트가 여러개 있을 때
+가장 아래에 적혀져있는 폰트 사용, 같은 라인에서는 가장 처음, 가장 왼쪽에 있는 폰트 사용한다. */
+
+body{
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nanum Pen Script";
+  /* 현재 화면의 100%를 최소 높이로 갖겠다. */
+  min-height: 100vh;
+  margin: 0px;
+}
+
+/* 반응형 웹 */
+/* 웹 브라우저의 화면 크기가 650px이상일 때 만 적용하겠다. */
+@media (min-width : 650px){
+  .App {
+    width: 640px;
+  }
+}
+
+/* 웹 브라우저의 화면 크기가 650px이하일 때 만 적용하겠다. */
+@media (max-width : 650px){
+  .App {
+    /* 현재 화면 너비의 90% 차지 */
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+.App {
+  min-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+}
