@@ -1,8 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import RouteTest from './components/RouteTest';
-
 import Home from './pages/Home'
 import New from './pages/New'
 import Edit from './pages/Edit'
@@ -13,6 +11,10 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <h2>App.js</h2>
+        {/* process.env.PUBLIC_URL : public 위치 */}
+        {/* <img src={process.env.PUBLIC_URL + `/assets/emotion1.png`} /> */}
+   
+
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/new' element={<New/>}/>
@@ -20,7 +22,7 @@ function App() {
           {/* <Route path='/diary/' element={<Diary/>}/> */}
           <Route path='/diary/:id' element={<Diary/>}/>
         </Routes>
-        <RouteTest/>
+
       </div>
     </BrowserRouter>
   );
