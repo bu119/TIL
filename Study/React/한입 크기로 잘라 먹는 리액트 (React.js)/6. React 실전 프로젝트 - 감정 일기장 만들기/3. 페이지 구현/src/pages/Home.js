@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { DiaryStateContext } from "../App";
 
-import MyHeader from "../components/MyHeader";
-import MyButton from "../components/MyButton";
-import DiaryList from "../components/DiaryList";
+import MyHeader from "./../components/MyHeader";
+import MyButton from "./../components/MyButton";
+import DiaryList from "./../components/DiaryList";
 
 const Home = () => {
   // 일기 리스트
@@ -42,7 +42,7 @@ const Home = () => {
   }, [diaryList, curDate]);
 
   useEffect(() => {
-    // console.log(data);
+    console.log(data);
   }, [data]);
 
   const increaseMonth = () => {
@@ -57,24 +57,10 @@ const Home = () => {
     );
   };
 
-  // 추가
-  const selectMonth = (date) => {
-    const year = date.slice(0, 4)
-    const month = date.slice(5, 7)
-    setCurDate(new Date(parseInt(year), parseInt(month) - 1, 1))
-  }
-
   return (
     <div>
       <MyHeader
         headText={headText}
-        headSelectMonth={
-          <input
-            onChange={(e) => selectMonth(e.target.value)}
-            className="input_month"
-            type="month"
-          />
-        }
         leftChild={<MyButton text={"<"} onClick={decreaseMonth} />}
         rightChild={<MyButton text={">"} onClick={increaseMonth} />}
       />

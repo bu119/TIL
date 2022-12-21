@@ -89,52 +89,10 @@ header > div {
   display: flex;
 }
 
-/* 기능 추가 시작 */
-header .head_date {
-  display: flex;
-  width: 50%;
-  justify-content: center;
-}
-
-header .head_month {
-  /* padding-left: 10px; */
-  display: flex;
-  align-items: center;
-}
-
-input[type=month]::-webkit-datetime-edit-text {
-  -webkit-appearance: none;
-  display: none;
-}
-input[type=month]::-webkit-datetime-edit-month-field{
-  -webkit-appearance: none;
-  display: none;
-}
-input[type=month]::-webkit-datetime-edit-year-field {
-  -webkit-appearance: none;
-  display: none;
-}
-
-input[type="month"] {
-  border: none;
-  width: 20px;
-  height: 20px;
-  padding-left: 0px;
-}
-
-/* input[type=month]:focus {
-  border: none;
-  outline: none;
-} */
-
-/* 기능 추가 끝 */
-
-
-/* 수정 */
 header .head_text {
+  width: 50%;
   font-size: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
+  justify-content: center;
 }
 
 header .head_btn_left {
