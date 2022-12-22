@@ -11,15 +11,13 @@ const Home = () => {
   const diaryList = useContext(DiaryStateContext);
 
   const [data, setData] = useState([]);
-  const [curDate, setCurDate] = useState(new Date());
-  const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
+
   // 마지막날 저장 // 추가
   const [CurLastDate, setCurLastDate] = useState('');
 
-  useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = '감정 일기장';
-  }, []);
+  const [curDate, setCurDate] = useState(new Date());
+  // console.log(curDate)
+  const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 
   useEffect(() => {
     // 일기가 없을 때는 할 필요없다.
@@ -48,6 +46,7 @@ const Home = () => {
 
       // 월의 마지막 날을 props로 차트에 넘기기 위해 // 추가
       const lastDate = new Date(lastDay)
+      // console.log(lastDate.getDate())
       setCurLastDate(lastDate.getDate())
 
     }

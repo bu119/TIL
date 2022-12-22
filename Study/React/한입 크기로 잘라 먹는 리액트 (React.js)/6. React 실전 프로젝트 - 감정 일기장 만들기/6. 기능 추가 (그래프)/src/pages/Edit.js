@@ -22,7 +22,7 @@ const Edit = () => {
   // 페이지 title 변경
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `감정 일기장 - ${id}번 일기 수정`;
+    titleElement.innerHTML = `감성 일기장 - ${id}번 일기 수정`;
   }, []);
 
   // id와 일치하는 일기 꺼내기
@@ -44,6 +44,7 @@ const Edit = () => {
     }
   // id, diaryList 변할때 꺼내오기
   }, [id, diaryList]);
+
 
   return (
     <div>

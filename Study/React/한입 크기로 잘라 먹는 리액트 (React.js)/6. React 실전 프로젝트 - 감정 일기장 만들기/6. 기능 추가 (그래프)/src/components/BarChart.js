@@ -1,43 +1,10 @@
-# 감정 일기장 만들기
-
-한입 크기로 잘라 먹는 리액트(React.js) : 기초부터 실전까지
-
-## * 전체 구성
-
-<img width="560" alt="홈 페이지" src="https://user-images.githubusercontent.com/109335452/209049739-93e35456-2a81-418c-a247-c85062fc07fd.png">
-
-## * 일기 생성 페이지
-
-<img width="554" alt="생성 페이지" src="https://user-images.githubusercontent.com/109335452/209049782-8cd430f3-b052-4792-b8b7-adfccfd2e762.png">
-
-## * 일기 수정 페이지
-
-<img width="558" alt="수정 페이지" src="https://user-images.githubusercontent.com/109335452/209049805-312ab146-1aa1-4e89-b605-90cc7b0706d3.png">
-
----
-
-## 추가 기능
-
-#### 1. 달력을 이용하여 `<`, `>` 버튼 사용 이외에 날짜 선택이 가능하다.
-
-<img width="566" alt="달력으로 날짜 선택" src="https://user-images.githubusercontent.com/109335452/209049921-03a68208-2f0e-4922-b173-83d13bed14d3.png">
-
-#### 2. 막대 그래프를 추가하여 해당 월의 기분 변화 파악할 수 있다.
-
-<img width="558" alt="그래프" src="https://user-images.githubusercontent.com/109335452/209049950-808feb67-bdb7-43a9-acf4-4e6a40fe9d82.png">
-
-## Code
-
-```javascript
-// BarChart.js
-
 import React from "react";
 
 import Chart from 'chart.js/auto';
 import { Bar } from "react-chartjs-2";
 
 
-const BarChart = ({ diaryList, month, lastDay }) => {
+const BarChart = ({ diaryList, lastDay }) => {
   // console.log(diaryList)
   
   // 1일부터 마지막 날까지 배열
@@ -75,6 +42,41 @@ const BarChart = ({ diaryList, month, lastDay }) => {
     return {'x':`${day.getDate()}일`,'y':6-e.emotion}
   })
 
+  // const emotionList = diaryList.map((e) => {
+  //   const day = new Date(e.date)
+  //   return {'x':`${day.getDate()}일`,'y':6-e.emotion}
+  // })
+  
+  // labels을 가지고 있는 값으로만 설정
+
+  // 정렬
+  // const compare = (a, b) => {
+  //   return parseInt(a.date) - parseInt(b.date);
+  // }
+  // const sortDiaryList = diaryList.sort(compare)
+
+  // 가지고 있는 값 저장
+  // const dayList = sortDiaryList.map((e) => {
+  //   const day = new Date(e.date)
+  //   return `${day.getDate()}일`
+  // })
+  // console.log(dayList)
+
+  // labels 중복 값 제거
+  // const setDayList = [...new Set(dayList)]
+
+  // let chartData = {
+  //     labels: alldayList,
+  //     datasets: [{
+  //       type: 'line',
+  //       data: emotionList,
+  //       label: `${month}월의 기분 변화`,
+  //       fill: false,
+  //       borderColor: 'rgb(75, 192, 192)',
+  //       tension: 0.1
+  //     }]
+  // };
+
   const options = {
     legend: {
         display: false, // label 숨기기
@@ -103,6 +105,8 @@ const BarChart = ({ diaryList, month, lastDay }) => {
     'rgba(255, 205, 86, 0.2)',
     'rgba(75, 192, 192, 0.2)',
     'rgba(54, 162, 235, 0.2)',
+    // 'rgba(153, 102, 255, 0.2)',
+    // 'rgba(201, 203, 207, 0.2)'
   ]
   const emotioBorderColor = [
     'rgb(255, 99, 132)',
@@ -110,7 +114,24 @@ const BarChart = ({ diaryList, month, lastDay }) => {
     'rgb(255, 205, 86)',
     'rgb(75, 192, 192)',
     'rgb(54, 162, 235)',
+    // 'rgb(153, 102, 255)',
+    // 'rgb(201, 203, 207)'
   ]
+
+  // const chartData = {
+  //   labels: alldayList,
+  //   datasets: [
+  //     {
+  //       label: `${month}월의 기분 변화`,
+  //       backgroundColor: rankColor,
+  //       borderColor: rankColor,
+  //       borderWidth: 1,
+  //       hoverBackgroundColor: rankColor,
+  //       hoverBorderColor: rankColor,
+  //       data: emotionList
+  //     }
+  //   ]
+  // }; 
 
   const chartData = {
     labels: alldayList,
@@ -168,6 +189,7 @@ const BarChart = ({ diaryList, month, lastDay }) => {
     <div className="bar_chart">
       <Bar 
         data={chartData}
+        // width={300}
         height={200}
         options={options}
       />
@@ -176,5 +198,3 @@ const BarChart = ({ diaryList, month, lastDay }) => {
 }
 
 export default React.memo(BarChart);
-```
-

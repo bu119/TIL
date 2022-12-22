@@ -75,15 +75,13 @@ function App() {
       // JSON.parse - 데이터 복원
       // 내림차순으로 정렬
       const diaryList = JSON.parse(localData).sort((a, b) => parseInt(b.id) - parseInt(a.id));
-
-      // 일기가 존재할 때만 수행 (없으면 id값이 없으므로 에러 발생)
-      if (diaryList.length >= 1) {
-        // 다음 인덱스 부터 저장하기위해 마지막 인덱스 찾기
-        dataId.current = parseInt(diaryList[0].id) + 1;
-        // 초기값으로 설정
-        dispatch({ type: "INIT", data: diaryList });
-      }
-
+      // 다음 인덱스 부터 저장하기위해 마지막 인덱스 찾기
+      dataId.current = parseInt(diaryList[0].id) + 1;
+      // console.log(diaryList)
+      // console.log(dataId)
+      
+      // 초기값으로 설정
+      dispatch({ type: "INIT", data: diaryList });
     }
   }, []);
 
