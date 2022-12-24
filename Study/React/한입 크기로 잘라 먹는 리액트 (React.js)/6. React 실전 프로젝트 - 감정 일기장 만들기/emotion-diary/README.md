@@ -1,6 +1,18 @@
-# 감정 일기장 만들기
+# 감정 일기장 만들기 Project
 
-한입 크기로 잘라 먹는 리액트(React.js) : 기초부터 실전까지
+한입 크기로 잘라 먹는 리액트(React.js) : 기초부터 실전까지 (inflearn)
+
+- 데이터 추가 / 수정 / 삭제 기능
+- Local Storage를 이용하여 웹 브라우저를 DB처럼 이용
+- Firebase를 이용해 무료로 인터넷에 배포
+
+
+
+## < 배포 >
+
+https://bu-diary-project.web.app/
+
+
 
 ## * 전체 구성
 
