@@ -1,5 +1,3 @@
-import sys
-
 def dfs(idx, minX, minY, maxX, maxY, area):
     global ans
 
@@ -20,7 +18,6 @@ def dfs(idx, minX, minY, maxX, maxY, area):
         # 현재 넓이가 최소값 보다 크면 dfs 안함
         if ans > size:
             dfs(idx+1, new_minX, new_minY, new_maxX, new_maxY, size)
-
 
 
 n, m = map(int, input().split())
