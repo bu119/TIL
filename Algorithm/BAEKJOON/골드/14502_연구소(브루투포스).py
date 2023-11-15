@@ -1,7 +1,6 @@
 # 0 위치 저장
 # 0 위치 3개 선택
 # bfs로 안전 영역 확인
-from itertools import combinations
 import sys
 input = sys.stdin.readline
 
